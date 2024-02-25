@@ -1,16 +1,54 @@
-# app
+# Kilkaari - Child Care App
 
-A new Flutter project.
+Welcome to Kilkaari, a comprehensive child care app built using Flutter with a Firebase backend. Our mission is to reduce child mortality rates by empowering parents and caregivers with essential tools and resources. Kilkaari offers a holistic approach to child care, providing features such as a vaccination tracker, a machine learning model for monitoring child growth, monthly nutrition guides, and educational content on child care and proper diet.
 
-## Getting Started
+## Key Features
 
-This project is a starting point for a Flutter application.
+- **Vaccination Tracker**: Stay on top of your child's immunization schedule with our easy-to-use vaccination tracker.
 
-A few resources to get you started if this is your first Flutter project:
+- **Child Growth Monitoring**: Utilize our machine learning model to monitor your child's growth and receive personalized insights.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Monthly Nutrition Guides**: Access monthly nutrition guides to make informed decisions about your child's diet for their overall well-being.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Educational Content**: Explore articles and videos offering guidance on various aspects of child care and nutrition.
+
+- **Multilingual Support**: Kilkaari is designed to be used in local languages, making it more accessible and user-friendly for a diverse audience.
+
+## How to Run the Project
+
+Follow these steps to run Kilkaari on your local machine:
+
+### Prerequisites
+
+- Make sure you have Flutter installed. If not, follow the [Flutter installation guide](https://flutter.dev/docs/get-started/install).
+
+- Clone the repository:
+
+  
+  git clone https://github.com/Goutam-Mahur/app-main.git
+  
+
+### Running the App
+
+1. Navigate to the project directory:
+
+
+   cd app-main
+
+
+2. Install dependencies:
+
+   
+   flutter pub get
+   
+
+3. Connect your device or start an emulator.
+
+4. Run the app:
+
+   
+5.  flutter run
+   
+
+The app should now be running on your device or emulator.
+
