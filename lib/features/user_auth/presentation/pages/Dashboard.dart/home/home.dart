@@ -1,11 +1,15 @@
+
+import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/home/heightweight.dart';
+import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/home/notes/notespage.dart';
 import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/home/profile.dart';
 import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/home/reminder.dart';
+import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/milestone.dart/milestonepage.dart';
+import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/parentalguide/parentalguidepage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../Knowledge/Knowledge.dart';
-import '../nutrition/nutrition.dart';
+
 import '../vaccination/vaccination.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -106,33 +110,25 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: Row(
                       children: [
                         Expanded(
-                          child: ListTile(
-                            title: Text(
-                              'Baby Height:',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
-                              ),
-                            ),
-                            subtitle: Text(height),
+                          child: GestureDetector(
                             onTap: () {
-                              _editHeight(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChildHealthPage()), // Replace NewPage with the desired page
+                              );
                             },
-                          ),
-                        ),
-                        Expanded(
-                          child: ListTile(
-                            title: Text(
-                              'Baby Weight:',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 18,
+                            child: ListTile(
+                              title: Text(
+                                'Health Checker',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                ),
                               ),
+                              trailing: Icon(Icons.arrow_forward),
                             ),
-                            subtitle: Text(weight),
-                            onTap: () {
-                              _editWeight(context);
-                            },
                           ),
                         ),
                       ],
@@ -159,11 +155,11 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.book),
-            label: 'Knowledge',
+            label: 'Parental Guide',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.restaurant_menu),
-            label: 'Nutrition',
+            icon: Icon(Icons.flag),
+            label: 'Milestone',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.local_hospital),
@@ -178,12 +174,12 @@ class _DashboardPageState extends State<DashboardPage> {
           } else if (index == 1) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => KnowledgePage()),
+              MaterialPageRoute(builder: (context) => ParentalGuidePage()),
             );
           } else if (index == 2) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => NutritionPage()),
+              MaterialPageRoute(builder: (context) => MilestonePage()),
             );
           } else if (index == 3) {
             Navigator.push(
@@ -294,7 +290,7 @@ class _DashboardPageState extends State<DashboardPage> {
               color: const Color.fromRGBO(248, 166, 108, 100),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: _buildFactItem('Fact 1: Lorem ipsum dolor sit amet.'),
+            child: _buildFactItem('Fact 1:Rapid Brain Growth: Babies undergo significant brain development in their first year.'),
           ),
           SizedBox(height: 10),
           Container(
@@ -303,7 +299,7 @@ class _DashboardPageState extends State<DashboardPage> {
               color: const Color.fromRGBO(69, 206, 162, 100),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: _buildFactItem('Fact 2: Consectetur adipiscing elit.'),
+            child: _buildFactItem('Fact 2:Sleep Patterns: Newborns sleep a lot, but their sleep cycles are irregular.'),
           ),
           SizedBox(height: 10),
           Container(
@@ -312,7 +308,7 @@ class _DashboardPageState extends State<DashboardPage> {
               color: Color.fromRGBO(252, 173, 179, 100),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: _buildFactItem('Fact 3: Sed do eiusmod tempor incididunt .'),
+            child: _buildFactItem('Fact 3:Innate Reflexes: Babies are born with reflexes like rooting and grasping.'),
           ),
         ],
       ),
@@ -343,41 +339,40 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
     );
   }
-
-  Widget _buildArticleOfTheDaySection() {
-    return Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Articles of the Day',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+Widget _buildArticleOfTheDaySection() {
+  return Container(
+    padding: EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Articles of the Day',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
-          SizedBox(height: 10),
-          _buildArticleWithImage(
-            title: 'How to promote healthy sleep habits in infants.',
-            description:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            imagePath: 'assets/article_images/sleep_habits.jpg',
-          ),
-          SizedBox(height: 20),
-          _buildArticleWithImage(
-            title: 'The importance of breastfeeding for newborns.',
-            description:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            imagePath: 'assets/article_images/breastfeeding.jpg',
-          ),
-        ],
-      ),
-    );
-  }
+        ),
+        SizedBox(height: 10),
+        _buildArticleWithImage(
+          title: 'How to promote healthy sleep habits in infants.',
+          description:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          imagePath: 'assets/images/healthconcern.png', // Change this line
+        ),
+        SizedBox(height: 20),
+        _buildArticleWithImage(
+          title: 'The importance of breastfeeding for newborns.',
+          description:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          imagePath: 'assets/images/newbornessential.png', // Change this line
+        ),
+      ],
+    ),
+  );
+}
 
   Widget _buildArticleWithImage({
     required String title,
@@ -426,26 +421,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Widget _buildVideoContainer() {
     return Container(
-      padding: EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Video of the Day',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 10),
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Container(
-              color: const Color.fromARGB(255, 247, 246, 246),
-            ),
-          ),
-        ],
-      ),
+      
     );
   }
 }
@@ -485,21 +461,25 @@ class DrawerWidget extends StatelessWidget {
             leading: Icon(Icons.person),
             title: Text('Profile'),
             onTap: () {
-            // Navigate to the ProfilePage
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProfilePage()),
-            );
-          },
-          ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
-            onTap: () {
-              Navigator.pop(context);
+              // Navigate to the ProfilePage
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
             },
           ),
+          ListTile(
+            leading: Icon(Icons.book),
+            title: Text('Notes'),
+            onTap: () {
+              // Navigate to the ProfilePage
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotesPage()),
+              );
+            },
+          ),
+        
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Log out'),

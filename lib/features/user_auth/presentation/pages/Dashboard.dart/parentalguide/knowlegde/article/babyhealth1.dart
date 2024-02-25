@@ -8,7 +8,7 @@ class NewPage extends StatefulWidget {
 
 class _NewPageState extends State<NewPage> {
   final translator = GoogleTranslator();
-  String selectedLanguage = 'English'; // Default language
+  String selectedLanguage = 'English'; 
 
   String translatedIntroduction = '';
   String translatedSection1 = '';
@@ -71,7 +71,7 @@ class _NewPageState extends State<NewPage> {
   @override
   void initState() {
     super.initState();
-    translateText('en'); // Default language is English
+    translateText('en'); 
   }
 
   @override
@@ -233,7 +233,7 @@ class NewPage1 extends StatefulWidget {
 
 class _NewPage1State extends State<NewPage1> {
   final translator = GoogleTranslator();
-  String selectedLanguage = 'English'; // Default language
+  String selectedLanguage = 'English'; 
 
   String translatedIntroduction = '';
   String translatedSection1 = '';
@@ -291,7 +291,7 @@ class _NewPage1State extends State<NewPage1> {
   @override
   void initState() {
     super.initState();
-    translateText('en'); // Default language is English
+    translateText('en'); 
   }
 
   @override
@@ -442,7 +442,7 @@ class NewPage2 extends StatefulWidget {
 
 class _NewPage2State extends State<NewPage2> {
   final translator = GoogleTranslator();
-  String selectedLanguage = 'English'; // Default language
+  String selectedLanguage = 'English'; 
 
   String originalIntroduction =
       'Introduction: As parents, ensuring the cleanliness and safety of our baby\'s environment is paramount. Baby gear, including strollers, car seats, high chairs, and toys, can harbor germs and bacteria that pose risks to our little ones\' health. In this article, we\'ll provide a comprehensive guide to sanitizing baby gear effectively, keeping our babies healthy and happy.';
@@ -490,7 +490,7 @@ class _NewPage2State extends State<NewPage2> {
   @override
   void initState() {
     super.initState();
-    translateText('en'); // Default language is English
+    translateText('en');
   }
 
   @override
@@ -609,7 +609,7 @@ class NewPage3 extends StatefulWidget {
 
 class _NewPage3State extends State<NewPage3> {
   final translator = GoogleTranslator();
-  String selectedLanguage = 'English'; // Default language
+  String selectedLanguage = 'English'; 
 
   String originalIntroduction =
       'Introduction: Welcoming a baby into the family is a joyous occasion filled with love and excitement. As parents, ensuring the health and well-being of our little ones is our top priority. A crucial aspect of this care is maintaining a clean and safe environment for our babies to grow and thrive in. In this article, we\'ll explore the essentials of sanitation for babies, providing practical tips and guidelines to help parents create a healthy and hygienic environment for their little ones.';
@@ -657,7 +657,7 @@ class _NewPage3State extends State<NewPage3> {
   @override
   void initState() {
     super.initState();
-    translateText('en'); // Default language is English
+    translateText('en'); 
   }
 
   @override
@@ -684,7 +684,7 @@ class _NewPage3State extends State<NewPage3> {
                   } else if (newValue == 'Hindi') {
                     translateText('hi');
                   }
-                  // Add more languages as needed
+                  
                 });
               },
               items: <String>['English', 'Hindi']
@@ -776,7 +776,7 @@ class NewPage4 extends StatefulWidget {
 
 class _NewPage4State extends State<NewPage4> {
   final translator = GoogleTranslator();
-  String selectedLanguage = 'English'; // Default language
+  String selectedLanguage = 'English'; 
 
   String originalIntroduction =
       'Introduction: Bringing a newborn home is an exciting and joyous time, but it also comes with the responsibility of ensuring your baby\'s health and well-being. Newborn hygiene plays a crucial role in keeping your baby clean, comfortable, and healthy during their early days. In this article, we\'ll discuss essential tips for maintaining proper hygiene for your newborn, from bathing to diaper changing and beyond.';
@@ -848,7 +848,7 @@ class _NewPage4State extends State<NewPage4> {
   @override
   void initState() {
     super.initState();
-    translateText('en'); // Default language is English
+    translateText('en'); 
   }
 
   @override
@@ -1087,7 +1087,7 @@ class _NewPage5State extends State<NewPage5> {
   @override
   void initState() {
     super.initState();
-    translateText('en'); // Default language is English
+    translateText('en'); 
   }
 
   @override

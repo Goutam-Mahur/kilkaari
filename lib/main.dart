@@ -26,23 +26,24 @@ Future main() async {
   }
 
   await AwesomeNotifications().initialize(
-    null,[
+    null,
+    [
       NotificationChannel(
-        channelGroupKey: 'basic_channel_group',
-        channelKey: 'basic_channel',
-        channelName: 'Basic notifications',
-        channelDescription: 'Notification channel for basic tests',
-        defaultColor: Color(0xFF9D50DD),
-        ledColor: Colors.white)
+          channelGroupKey: 'basic_channel_group',
+          channelKey: 'basic_channel',
+          channelName: 'Basic notifications',
+          channelDescription: 'Notification channel for basic tests',
+          defaultColor: Color(0xFF9D50DD),
+          ledColor: Colors.white)
     ],
     channelGroups: [
-    NotificationChannelGroup(
-        channelGroupKey: 'basic_channel_group',
-        channelGroupName: 'Basic group')
-  ],
-  // debug: true
+      NotificationChannelGroup(
+          channelGroupKey: 'basic_channel_group',
+          channelGroupName: 'Basic group')
+    ],
+    // debug: true
   );
-  
+
   runApp(MyApp());
 }
 
@@ -57,7 +58,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-
     // Only after at least the action method is set, the notification events are delivered
     AwesomeNotifications().setListeners(
       onActionReceivedMethod: NotificationController.onActionReceivedMethod,
@@ -93,5 +93,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-

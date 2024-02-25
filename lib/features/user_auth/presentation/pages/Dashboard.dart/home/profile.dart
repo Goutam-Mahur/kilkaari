@@ -26,7 +26,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
       if (user != null) {
         DocumentSnapshot<Map<String, dynamic>> snapshot =
-            await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+            await FirebaseFirestore.instance
+                .collection('users')
+                .doc(user.uid)
+                .get();
 
         if (snapshot.exists) {
           setState(() {
@@ -59,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(255, 215, 239, 251),
       ),
       body: Column(
         children: [
@@ -86,7 +89,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   'Date of Birth: $dateOfBirth',
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.blue,
+                    color: const Color.fromARGB(255, 48, 49, 49),
                   ),
                 ),
                 SizedBox(height: 8),
@@ -94,7 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   'Email: $emailId',
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.blue,
+                    color:  const Color.fromARGB(255, 48, 49, 49),
                   ),
                 ),
               ],
@@ -110,7 +113,7 @@ class _ProfilePageState extends State<ProfilePage> {
       clipper: WaveClipper(),
       child: Container(
         height: 100,
-        color: Colors.blue,
+        color: Color.fromARGB(255, 215, 239, 251),
       ),
     );
   }
@@ -121,8 +124,10 @@ class WaveClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     var path = Path();
     path.lineTo(0, size.height - 20);
-    path.quadraticBezierTo(size.width / 4, size.height, size.width / 2, size.height - 20);
-    path.quadraticBezierTo(3 * size.width / 4, size.height - 40, size.width, size.height - 20);
+    path.quadraticBezierTo(
+        size.width / 4, size.height, size.width / 2, size.height - 20);
+    path.quadraticBezierTo(
+        3 * size.width / 4, size.height - 40, size.width, size.height - 20);
     path.lineTo(size.width, 0);
     path.close();
     return path;

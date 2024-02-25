@@ -47,6 +47,7 @@ dependencies:
   awesome_notifications: ^0.9.2
   youtube_player_flutter: ^8.1.2
   translator: ^1.0.0
+  http: 1.2.0
 
 dev_dependencies:
   flutter_test:

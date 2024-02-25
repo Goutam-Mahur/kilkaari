@@ -15,7 +15,8 @@ class _Reminder {
   final String description;
   final DateTime dateTime;
 
-  _Reminder({required this.title, required this.description, required this.dateTime});
+  _Reminder(
+      {required this.title, required this.description, required this.dateTime});
 }
 
 class _ReminderPageState extends State<ReminderPage> {
@@ -51,7 +52,8 @@ class _ReminderPageState extends State<ReminderPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => DashboardPage(), // Replace with your actual DashboardPage
+          builder: (context) =>
+              DashboardPage(), // Replace with your actual DashboardPage
         ),
       );
     }
@@ -61,7 +63,8 @@ class _ReminderPageState extends State<ReminderPage> {
 
   Future<void> _loadReminders(String userId) async {
     try {
-      DocumentSnapshot userSnapshot = await _firestore.collection('users').doc(userId).get();
+      DocumentSnapshot userSnapshot =
+          await _firestore.collection('users').doc(userId).get();
 
 //       // Create reminders collection if not exists
 //       if (!userSnapshot.exists || !(userSnapshot.data() as Map).containsKey('reminders')) {
@@ -69,7 +72,11 @@ class _ReminderPageState extends State<ReminderPage> {
 // }
 
       // Load reminders for the user
-      QuerySnapshot remindersSnapshot = await _firestore.collection('users').doc(userId).collection('reminders').get();
+      QuerySnapshot remindersSnapshot = await _firestore
+          .collection('users')
+          .doc(userId)
+          .collection('reminders')
+          .get();
 
       setState(() {
         _reminders = remindersSnapshot.docs.map((doc) {
@@ -114,32 +121,39 @@ class _ReminderPageState extends State<ReminderPage> {
   void _showModalForm() {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (BuildContext context) {
-        return Container(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Create Reminder',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-              TextFormField(
-                controller: _titleController,
-                decoration: InputDecoration(labelText: 'Title'),
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                controller: _descriptionController,
-                decoration: InputDecoration(labelText: 'Description'),
-              ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () => _scheduleNotification(),
-                child: Text('Create Reminder'),
-              ),
-            ],
+        return SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+              left: 16.0,
+              right: 16.0,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Create Reminder',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: _titleController,
+                  decoration: InputDecoration(labelText: 'Title'),
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  controller: _descriptionController,
+                  decoration: InputDecoration(labelText: 'Description'),
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () => _scheduleNotification(),
+                  child: Text('Create Reminder'),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -176,7 +190,11 @@ class _ReminderPageState extends State<ReminderPage> {
 
     try {
       // Save reminder to Firestore
-      await _firestore.collection('users').doc(user.uid).collection('reminders').add({
+      await _firestore
+          .collection('users')
+          .doc(user.uid)
+          .collection('reminders')
+          .add({
         'title': title,
         'description': description,
         'dateTime': scheduledDateTime,
@@ -184,27 +202,30 @@ class _ReminderPageState extends State<ReminderPage> {
 
       // Schedule notification
       await AwesomeNotifications().createNotification(
-  content: NotificationContent(
-    id: _reminders.length + 1,
-    channelKey: 'basic_channel',
-    actionType: ActionType.Default,
-    title: title,
-    body: description,
-  ),
-  schedule: NotificationCalendar(
-    timeZone: 'Asia/Kolkata', // Indian time zone
-    year: scheduledDateTime.year,
-    month: scheduledDateTime.month,
-    day: scheduledDateTime.day,
-    hour: scheduledDateTime.hour,
-    minute: scheduledDateTime.minute,
-    second: 0,
-    repeats: false,
-  ),
-);
+        content: NotificationContent(
+          id: _reminders.length + 1,
+          channelKey: 'basic_channel',
+          actionType: ActionType.Default,
+          title: title,
+          body: description,
+        ),
+        schedule: NotificationCalendar(
+          timeZone: 'Asia/Kolkata', // Indian time zone
+          year: scheduledDateTime.year,
+          month: scheduledDateTime.month,
+          day: scheduledDateTime.day,
+          hour: scheduledDateTime.hour,
+          minute: scheduledDateTime.minute,
+          second: 0,
+          repeats: false,
+        ),
+      );
 
       setState(() {
-        _reminders.add(_Reminder(title: title, description: description, dateTime: scheduledDateTime));
+        _reminders.add(_Reminder(
+            title: title,
+            description: description,
+            dateTime: scheduledDateTime));
       });
 
       Navigator.pop(context); // Close the modal bottom sheet
@@ -237,46 +258,52 @@ class _ReminderPageState extends State<ReminderPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Reminders'),
+        backgroundColor: Color.fromARGB(255, 215, 239, 251),
       ),
-      body: _reminders.isNotEmpty
-          ? ListView.builder(
-              itemCount: _reminders.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: EdgeInsets.all(16.0),
-                  margin: EdgeInsets.symmetric(vertical: 8.0),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Reminder ${index + 1} Details',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Title: ${_reminders[index].title}',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Text(
-                        'Description: ${_reminders[index].description}',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Text(
-                        'Scheduled DateTime: ${DateFormat('yyyy-MM-dd hh:mm a').format(_reminders[index].dateTime)}',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            )
-          : Center(
-              child: Text('No reminders yet'),
-            ),
+      body: Container(
+        color: Color.fromARGB(
+            255, 215, 239, 251), // Set your desired background color here
+        child: _reminders.isNotEmpty
+            ? ListView.builder(
+                itemCount: _reminders.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    padding: EdgeInsets.all(12.0),
+                    margin: EdgeInsets.symmetric(vertical: 8.0),
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(252, 173, 179, 100),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Reminder ${index + 1} Details',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Title: ${_reminders[index].title}',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          'Description: ${_reminders[index].description}',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                          'Scheduled DateTime: ${DateFormat('yyyy-MM-dd hh:mm a').format(_reminders[index].dateTime)}',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              )
+            : Center(
+                child: Text('No reminders yet'),
+              ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showReminderForm,
         child: Icon(Icons.notifications),

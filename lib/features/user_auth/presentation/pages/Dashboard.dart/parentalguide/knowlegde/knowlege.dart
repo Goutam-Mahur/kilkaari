@@ -1,8 +1,6 @@
-import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/Knowledge/articles/babyhealth1.dart';
 
-import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/home/home.dart';
-import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/nutrition/nutrition.dart';
-import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/vaccination/vaccination.dart';
+
+import 'package:app/features/user_auth/presentation/pages/Dashboard.dart/parentalguide/knowlegde/article/babyhealth1.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -77,50 +75,7 @@ class _KnowledgePageState extends State<KnowledgePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Knowledge',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.restaurant_menu),
-            label: 'Nutrition',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_hospital),
-            label: 'Vaccination',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blueAccent,
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => DashboardPage()),
-            );
-          } else if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => NutritionPage()),
-            );
-          } else if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => VaccinationPage()),
-            );
-          }
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-      ),
+      
     );
   }
 }
@@ -276,7 +231,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     ),
                     SizedBox(height: 8), // Adjust spacing here
                     Text(
-                      'Discover essential tips for new mothers navigating the journey of caring for their newborns. From creating a safe environment to understanding infant cues, this guide provides practical advice to ensure your baby\'s well-being and your peace of mind.',
+                      'Essential tips for new mothers navigating the journey of caring for their newborns Read more...',
                       style: TextStyle(
                           fontSize: 14,
                           color: Colors.black87), // Adjust font size here
@@ -337,7 +292,69 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       ),
                       SizedBox(height: 8), // Adjust spacing here
                       Text(
-                        'Learn about common health issues that may arise during your baby\'s early days. From jaundice to diaper rash, this article offers insights and guidance to help you address these concerns and navigate your baby health journey confidently.',
+                        'Learn about common health issues that may arise during your baby\'s early days Read more...',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.black87), // Adjust font size here
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 12), // Add spacing between the two containers
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          NewPage1(), // Replace NewPage() with the desired page
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 260, //
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  padding: EdgeInsets.all(12), // Adjust padding here
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(252, 173, 179, 100),
+                    borderRadius:
+                        BorderRadius.circular(10), // Adjust border radius here
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Common Newborn Health Concerns',
+                        style: TextStyle(
+                          fontSize: 20, // Adjust font size here
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      SizedBox(height: 8), // Adjust spacing here
+                      Container(
+                        height: 160, // Adjust height here
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                            image: AssetImage(
+                                'assets/images/healthconcern.png'), // Replace with your image
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 8), // Adjust spacing here
+                      Text(
+                        'Learn about common health issues that may arise during your baby\'s early days Read more...',
                         style: TextStyle(
                             fontSize: 14,
                             color: Colors.black87), // Adjust font size here
@@ -348,6 +365,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               ),
             ],
           ),
+          
         );
 
       case 'Sanitation':
@@ -403,7 +421,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     ),
                     SizedBox(height: 8), // Adjust spacing here
                     Text(
-                      'This article provides a comprehensive guide for parents on effectively sanitizing baby gear, including strollers, car seats, high chairs, and toys. It highlights the importance of cleanliness in preventing illnesses and minimizing allergens for babies with developing immune systems. The article offers practical methods for cleaning and disinfecting baby gear, ensuring a safe and hygienic environment for little ones to thrive in.',
+                      'This article provides a comprehensive guide for parents on effectively sanitizing baby gear, including strollers, car seats, high chairs, and toys Read more...',
                       style: TextStyle(
                           fontSize: 14,
                           color: Colors.black87), // Adjust font size here
@@ -464,7 +482,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       ),
                       SizedBox(height: 8), // Adjust spacing here
                       Text(
-                        ' This article offers essential sanitation tips for parents to maintain a clean and healthy environment for their babies. It emphasizes the importance of preventing infections and promoting hygiene to support babies well-being. The article covers topics such as handwashing, diaper changing, cleaning baby items, and minimizing allergens, providing practical advice for maintaining cleanliness in daily routines.',
+                        ' This article offers essential sanitation tips for parents to maintain a clean and healthy environment for their babies Read more...',
                         style: TextStyle(
                             fontSize: 14,
                             color: Colors.black87), // Adjust font size here
@@ -530,7 +548,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     ),
                     SizedBox(height: 8), // Adjust spacing here
                     Text(
-                      'This comprehensive guide provides new parents with essential tips and techniques for maintaining proper hygiene practices for their newborn. From bathing to diaper changing, umbilical cord care, skin care, and nail care, this article covers all aspects of newborn hygiene. By following the practical advice outlined in this guide, parents can ensure that their baby stays clean, comfortable, and healthy during their early days.',
+                      'This comprehensive guide provides new parents with essential tips and techniques for maintaining proper hygiene practices for their newborn Read more...',
                       style: TextStyle(
                           fontSize: 14,
                           color: Colors.black87), // Adjust font size here
@@ -591,7 +609,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       ),
                       SizedBox(height: 8), // Adjust spacing here
                       Text(
-                        ' This handbook offers new parents a concise and practical overview of newborn hygiene essentials. It covers important topics such as bathing, umbilical cord care, diaper changing, skin care, and nail care, providing easy-to-follow tips and guidelines for maintaining cleanliness and promoting the health of their newborn. With this handbook, new parents can feel confident in providing the best possible care for their babys hygiene needs.',
+                        ' This handbook offers new parents a concise and practical overview of newborn hygiene essentials Read more.',
                         style: TextStyle(
                             fontSize: 14,
                             color: Colors.black87), // Adjust font size here
@@ -612,7 +630,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
     switch (widget.category) {
       case 'Baby Health':
         return _buildVideoContainerFromUrl('Baby Health Video ${index + 1}',
-            'https://www.youtube.com/watch?v=hfQBpQXZJ1I&ab_channel=LyricsLoom');
+            'https://www.youtube.com/watch?v=-CWJYxIvoFQ&ab_channel=DartmouthHealth');
+            
 
       case 'Sanitation':
         return _buildVideoContainerFromUrl('Sanitation Video ${index + 1}',
@@ -651,7 +670,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         margin: EdgeInsets.symmetric(vertical: 8),
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color:  const Color.fromRGBO(101, 116, 201, 100),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
