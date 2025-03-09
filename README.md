@@ -14,6 +14,8 @@ Welcome to Kilkaari, a comprehensive child care app built using Flutter with a F
 
 - **Multilingual Support**: Kilkaari is designed to be used in local languages, making it more accessible and user-friendly for a diverse audience.
 
+[![Watch the video]](https://www.youtube.com/watch?v=Ss646vPw9D8)
+
 ## How to Run the Project
 
 Follow these steps to run Kilkaari on your local machine:
